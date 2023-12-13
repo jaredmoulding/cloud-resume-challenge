@@ -1,5 +1,5 @@
 # Jared's Cloud Resume Challenge
----
+
 Architecture
 
 The website is hosted in AWS as a static website using an AWS S3 Bucket.

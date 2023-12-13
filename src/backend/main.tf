@@ -20,7 +20,7 @@ resource "aws_s3_bucket_ownership_controls" "jared-cloud-resume" {
         object_ownership = "BucketOwnerPreferred"
     }
   }
-
+/*
 resource "aws_s3_bucket_public_access_block" "jared-cloud-resume" {
   bucket = aws_s3_bucket.jared-cloud-resume.id
 
@@ -62,3 +62,4 @@ resource "aws_s3_object" "doggo" {
   source = "doggo.jpg"
   acl = "public-read"
 }
+*/

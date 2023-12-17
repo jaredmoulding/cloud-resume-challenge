@@ -20,7 +20,8 @@ resource "aws_s3_bucket_ownership_controls" "jared-cloud-resume" {
         object_ownership = "BucketOwnerPreferred"
     }
   }
-/*
+
+
 resource "aws_s3_bucket_public_access_block" "jared-cloud-resume" {
   bucket = aws_s3_bucket.jared-cloud-resume.id
 
@@ -40,14 +41,21 @@ resource "aws_s3_bucket_acl" "jared-cloud-resume" {
   acl    = "public-read"
 }
 
+
 resource "aws_s3_object" "index" {
   bucket = aws_s3_bucket.jared-cloud-resume.id
-  key = "index.html"
-  source = "index.html"
+  for_each = fileset("C:\\terraform\\cloud-resume-challenge\\src\\frontend\\","*")
+  //for_each = fileset("${path.module}\\cloud-resume-challenge\\src\\frontend\\","*")
+  // You can use a path in S3 to place the files in specific locations.. IE: key = "path/in/s3/${each.value}"
+  key = each.value
+  //source = "C:\\terraform\\cloud-resume-challenge\\src\\frontend\\${each.value}"
+  //source = "${path.module}\\cloud-resume-challenge\\src\\frontend\\${each.value}"
+  source = "C:\\terraform\\cloud-resume-challenge\\src\\frontend\\${each.value}"
   acl = "public-read"
-  content_type = "text/html"
+  //content_type = "text/html"
 }
 
+/*
 resource "aws_s3_object" "error" {
   bucket = aws_s3_bucket.jared-cloud-resume.id
   key = "error.html"
